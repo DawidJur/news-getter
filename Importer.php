@@ -3,6 +3,7 @@ include('readers/ReaderInterface.php');
 include('readers/ParpReader.php');
 include('readers/GovReader.php');
 include('readers/BiznesReader.php');
+include('../wp-config.php');
 
 class Importer
 {
@@ -54,7 +55,7 @@ class Importer
 
     private function connectToDb(): mysqli
     {
-        $mysqli = new mysqli();
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         if ($mysqli->connect_error) {
             die("Connection failed: " . $mysqli->connect_error);
         }

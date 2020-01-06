@@ -5,7 +5,11 @@ class BiznesReader implements ReaderInterface
 
     public function __construct(string $newsUrl)
     {
-        $this->html = file_get_html($newsUrl);
+        try {
+            $this->html = file_get_html($newsUrl);
+        } catch (Exception $e) {
+            echo 'Nastąpił nieoczekiwany błąd. Spróbuj ponownie lub skontaktuj się z administratorem. <br>'.$e->getMessage();
+        }
     }
 
     public function getTitle(): String
